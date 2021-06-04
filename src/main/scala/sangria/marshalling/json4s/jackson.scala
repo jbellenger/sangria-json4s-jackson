@@ -16,9 +16,9 @@ object jackson extends Json4sJacksonSupportLowPrioImplicits {
       builder.add(key, value)
 
     def mapNode(builder: MapBuilder) = JObject(builder.toList)
-    def mapNode(keyValues: Seq[(String, JValue)]) = JObject(keyValues.toList)
+    def mapNode(keyValues: Seq[(String, Node)]) = JObject(keyValues.toList)
 
-    def arrayNode(values: Vector[JValue]) = JArray(values.toList)
+    def arrayNode(values: Seq[Node]) = JArray(values.toList)
     def optionalArrayNodeValue(value: Option[JValue]) =
       value match {
         case Some(v) => v

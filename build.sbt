@@ -21,7 +21,8 @@ scalacOptions += "-target:jvm-1.8"
 javacOptions ++= Seq("-source", "8", "-target", "8")
 
 libraryDependencies ++= Seq(
-  "org.sangria-graphql" %% "sangria-marshalling-api" % "1.0.6",
+  // JMB TODO: trying to get this to have a local dependency
+  "org.sangria-graphql" %% "sangria-marshalling-api" % "latest.integration", // % "1.0.6",
   "org.json4s" %% "json4s-jackson" % "3.6.11",
   "org.sangria-graphql" %% "sangria-marshalling-testkit" % "1.0.4" % Test,
   "org.scalatest" %% "scalatest" % "3.2.9" % Test
@@ -42,6 +43,10 @@ ThisBuild / githubWorkflowPublishTargetBranches :=
     )
   )
 )
+
+// twitter stuff
+credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
+publishTo := Some("Artifactory Realm" at "https://artifactory.twitter.biz/libs-snapshots-local;build.timestamp=" + new java.util.Date().getTime)
 
 // Site and docs
 enablePlugins(SiteScaladocPlugin)
